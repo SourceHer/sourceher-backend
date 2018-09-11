@@ -28,8 +28,9 @@ function get(req, res) {
  */
 function create(req, res, next) {
   const user = new User({
-    username: req.body.username,
-    mobileNumber: req.body.mobileNumber
+    fullname: req.body.fullname,
+    email: req.body.email,
+    password: req.body.password
   });
 
   user.save()
@@ -45,8 +46,9 @@ function create(req, res, next) {
  */
 function update(req, res, next) {
   const user = req.user;
-  user.username = req.body.username;
-  user.mobileNumber = req.body.mobileNumber;
+  user.fullname = req.body.fullname;
+  user.email = req.body.email;
+  user.password = req.body.password;
 
   user.save()
     .then(savedUser => res.json(savedUser))
@@ -77,4 +79,20 @@ function remove(req, res, next) {
     .catch(e => next(e));
 }
 
-module.exports = { load, get, create, update, list, remove };
+/**
+ * Find user by email 
+ * @return {User}
+ */
+function findUserByEmail(req, res, next) {
+  const email = req.body.email; 
+
+  console.log(email);
+
+  User.findOne({'email': email}, 'email', function(error, result){
+    if(error) next(error);
+    res.json(result);
+  });
+}
+
+
+module.exports = { load, get, create, update, list, remove, findUserByEmail };
