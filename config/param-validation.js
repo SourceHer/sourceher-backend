@@ -29,9 +29,17 @@ module.exports = {
     }
   },
 
+  //
   email: {
     body: {
       email: Joi.string().required()
+    }
+  },
+
+  //POST /api/profiles/:profileId
+  profile: {
+    body: {
+
     }
   }
 };

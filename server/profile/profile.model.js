@@ -2,13 +2,13 @@ const Promise = require('bluebird');
 const mongoose = require('mongoose');
 const httpStatus = require('http-status');
 const APIError = require('../helpers/APIError');
-
+const Schema = mongoose.Schema;
 /**
  * Profile Schema
  */
 const ProfileSchema = new mongoose.Schema({
   userid: {
-    type: ObjectId, 
+    type: Schema.Types.ObjectId, 
     ref: 'User',
     required: true
   },
@@ -126,7 +126,7 @@ ProfileSchema.statics = {
   /**
    * Get user
    * @param {ObjectId} id - The objectId of profile.
-   * @returns {Promise<User, APIError>}
+   * @returns {Promise<Profile, APIError>}
    */
   get(id) {
     return this.findById(id)
@@ -135,13 +135,13 @@ ProfileSchema.statics = {
         if (profile) {
           return profile;
         }
-        const err = new APIError('No such user exists!', httpStatus.NOT_FOUND);
+        const err = new APIError('No such profile exists!', httpStatus.NOT_FOUND);
         return Promise.reject(err);
       });
   }
 };
 
 /**
- * @typedef User
+ * @typedef Profile
  */
 module.exports = mongoose.model('Profile', ProfileSchema);

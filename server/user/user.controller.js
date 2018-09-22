@@ -40,8 +40,9 @@ function create(req, res, next) {
 
 /**
  * Update existing user
- * @property {string} req.body.username - The username of user.
- * @property {string} req.body.mobileNumber - The mobileNumber of user.
+ * @property {string} req.body.fullname - The fullname of user.
+ * @property {string} req.body.email - The email of user.
+ * @property {string} req.body.password - The password of user.
  * @returns {User}
  */
 function update(req, res, next) {

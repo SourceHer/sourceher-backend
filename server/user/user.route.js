@@ -12,7 +12,8 @@ router.route('/')
   /** POST /api/users - Create new user */
   .post(validate(paramValidation.createUser), userCtrl.create);
 
-  router.route('/email')
+router.route('/email')
+  /** POST /api/users/email - Get user by email */
   .post(validate(paramValidation.email), userCtrl.findUserByEmail);
 
 router.route('/:userId')

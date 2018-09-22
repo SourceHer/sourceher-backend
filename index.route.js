@@ -1,6 +1,7 @@
 const express = require('express');
 const userRoutes = require('./server/user/user.route');
 const authRoutes = require('./server/auth/auth.route');
+const profileRoutes = require('./server/profile/profile.route');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -16,5 +17,8 @@ router.use('/users', userRoutes);
 
 // mount auth routes at /auth
 router.use('/auth', authRoutes);
+
+// mount profile routes at /profiles
+router.use('/profiles', profileRoutes);
 
 module.exports = router;
